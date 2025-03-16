@@ -2,35 +2,41 @@
 
 namespace App\Providers;
 
-use App\Services\IAuthService;
-use App\Services\IDashboardService;
-use App\Services\IFeeHeadService;
 use App\Services\IFeeService;
-use App\Services\IFiscalYearService;
-use App\Services\IIncomeGroupService;
-use App\Services\impl\AuthService;
-use App\Services\impl\DashboardService;
-use App\Services\impl\FeeHeadService;
-use App\Services\impl\FeeService;
-use App\Services\impl\FiscalYearService;
-use App\Services\impl\IncomeGroupService;
-use App\Services\impl\OrganizationService;
-use App\Services\impl\RiderService;
-use App\Services\impl\SchoolService;
-use App\Services\impl\SlotService;
-use App\Services\impl\UserInitialValueService;
-use App\Services\impl\UserService;
-use App\Services\impl\VehicleService;
-use App\Services\impl\VehicleTypeService;
-use App\Services\IOrganizationService;
+use App\Services\IAuthService;
+use App\Services\ISlotService;
+use App\Services\IUserService;
 use App\Services\IRiderService;
 use App\Services\ISchoolService;
-use App\Services\ISlotService;
-use App\Services\IUserInitialValueService;
-use App\Services\IUserService;
+use App\Services\IExpenseService;
+use App\Services\IFeeHeadService;
+use App\Services\impl\FeeService;
 use App\Services\IVehicleService;
+use App\Services\impl\AuthService;
+use App\Services\impl\SlotService;
+use App\Services\impl\UserService;
+use App\Services\IDashboardService;
+use App\Services\impl\RiderService;
+use App\Services\IFiscalYearService;
+use App\Services\impl\SchoolService;
+use App\Services\IExpenseHeadService;
+use App\Services\IIncomeGroupService;
+use App\Services\impl\ExpenseService;
+use App\Services\impl\FeeHeadService;
+use App\Services\impl\VehicleService;
 use App\Services\IVehicleTypeService;
+use App\Services\IExpenseGroupService;
+use App\Services\IOrganizationService;
+use App\Services\impl\DashboardService;
 use Illuminate\Support\ServiceProvider;
+use App\Services\impl\FiscalYearService;
+use App\Services\impl\ExpenseHeadService;
+use App\Services\impl\IncomeGroupService;
+use App\Services\impl\VehicleTypeService;
+use App\Services\impl\ExpenseGroupService;
+use App\Services\impl\OrganizationService;
+use App\Services\IUserInitialValueService;
+use App\Services\impl\UserInitialValueService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -42,6 +48,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IAuthService::class, AuthService::class);
         $this->app->bind(IDashboardService::class, DashboardService::class);
         $this->app->bind(IFiscalYearService::class, FiscalYearService::class);
+        $this->app->bind(IExpenseGroupService::class, ExpenseGroupService::class);
+        $this->app->bind(IExpenseHeadService::class, ExpenseHeadService::class);
+        $this->app->bind(IExpenseService::class, ExpenseService::class);
+
         $this->app->bind(IIncomeGroupService::class, IncomeGroupService::class);
         $this->app->bind(IFeeHeadService::class, FeeHeadService::class);
         $this->app->bind(IFeeHeadService::class, FeeHeadService::class);

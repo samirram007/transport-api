@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Organization\StoreOrganizationRequest;
+use App\Http\Requests\Organization\UpdateOrganizationRequest;
 use App\Models\Organization;
 use App\Services\IOrganizationService;
 use Illuminate\Http\Request;

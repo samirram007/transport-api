@@ -10,9 +10,12 @@ class FeeItemMonth extends Model
 {
     use  HasFactory;
     protected $fillable = [
+        'fee_id',
         'fee_item_id',
-        'year_id',
+        'rider_id',
+        'year',
         'month_id',
+        'is_waived',
         'amount',
     ];
     public function fee_item()
@@ -20,12 +23,21 @@ class FeeItemMonth extends Model
         return $this->belongsTo(FeeItem::class);
     }
 
-    public function feeItem()
+    public function fee()
     {
-        return $this->belongsTo(FeeItem::class, 'fee_item_id', 'id');
+        return $this->belongsTo(Fee::class);
+    }
+    public function rider()
+    {
+        return $this->belongsTo(Rider::class);
     }
     public function month()
     {
-        return $this->belongsTo(Month::class,'month_id');
+        return $this->belongsTo(Month::class);
     }
+
+    protected $casts = [
+        'is_waived' => 'boolean',
+        'amount' => 'float',
+    ];
 }

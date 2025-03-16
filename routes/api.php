@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\FeeTemplateItemController;
 use App\Http\Controllers\Api\FiscalYearController;
 use App\Http\Controllers\Api\IncomeGroupController;
 use App\Http\Controllers\Api\MonthController;
+use App\Http\Controllers\Api\OrganizationController;
 use App\Http\Controllers\Api\RiderController;
 use App\Http\Controllers\Api\SchoolController;
 use App\Http\Controllers\Api\SlotController;
@@ -71,12 +72,13 @@ Route::middleware('auth:api')->group(function () {
     Route::get('fees_by_student_session/{student_session}',[ FeeController::class,'FeesByStudentSession']);
 
 
-    Route::apiResource('expenses', ExpenseController::class);
     Route::apiResource('expense_groups', ExpenseGroupController::class);
     Route::apiResource('expense_heads', ExpenseHeadController::class);
+    Route::apiResource('expenses', ExpenseController::class);
     Route::apiResource('user_initial_values', UserInitialValueController::class);
     Route::get('profile', [AuthController::class, 'profile']);
     Route::get('auth/profile', [AuthController::class, 'profile']);
+    Route::apiResource('organizations', OrganizationController::class);
     Route::apiResource('schools', SchoolController::class);
     Route::apiResource('vehicle_types', VehicleTypeController::class);
     Route::apiResource('vehicles', VehicleController::class);

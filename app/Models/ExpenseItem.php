@@ -11,10 +11,8 @@ class ExpenseItem extends Model
     protected $fillable = [
         'expense_id',
         'expense_head_id',
-        'quantity',
-        'months',
         'amount',
-        'total_amount',
+        'is_deleted'
     ];
     public function expense()
     {

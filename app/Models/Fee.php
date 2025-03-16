@@ -13,6 +13,7 @@ class Fee extends Model
         'fee_no',
         'fee_date',
         'rider_id',
+        'rider_snapshot_id',
         'fiscal_year_id',
         'pickup_slot_id',
         'drop_slot_id',
@@ -53,16 +54,11 @@ class Fee extends Model
     public function fee_items(){
         return $this->hasMany(FeeItem::class, 'fee_id', 'id');
     }
+
     public function fee_item_months(){
-        return $this->hasManyThrough(
-            FeeItemMonth::class,  // Final model
-            FeeItem::class,       // Intermediate model
-            'fee_id',             // Foreign key on FeeItem table linking to Fee
-            'fee_item_id',        // Foreign key on FeeItemMonth table linking to FeeItem
-            'id',                 // Local key on Fee table
-            'id'                  // Local key on FeeItem table
-        );
+        return $this->hasMany(FeeItemMonth::class);
     }
+
 
 
 }

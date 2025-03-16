@@ -6,6 +6,7 @@ use App\Http\Resources\Address\AddressResource;
 use App\Http\Resources\Document\DocumentResource;
 use App\Http\Resources\EducationBoard\EducationBoardResource;
 use App\Http\Resources\Fee\FeeCollection;
+use App\Http\Resources\FeeItemMonth\FeeItemMonthCollection;
 use App\Http\Resources\RiderSnapshot\RiderSnapshotCollection;
 use App\Http\Resources\RiderType\RiderTypeResource;
 use App\Http\Resources\School\SchoolResource;
@@ -50,6 +51,7 @@ class RiderResource extends SuccessResource
             'profileDocument' => $this->whenNotNull(new DocumentResource($this->whenLoaded('profile_document'))),
 
             'fees'=> $this->whenNotNull(new FeeCollection($this->whenLoaded('fees'))),
+            'feeItemMonths'=> $this->whenNotNull(new FeeItemMonthCollection($this->whenLoaded('fee_item_months'))),
             'riderSnapshots'=> $this->whenNotNull(new RiderSnapshotCollection($this->whenLoaded('rider_snapshots'))),
 
 

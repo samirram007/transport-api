@@ -25,18 +25,12 @@ class UpdateExpenseRequest extends FormRequest
 
             'expense_no'=> ['required','string','max:255'],
             'expense_date'=> ['required', 'date'],
-            'user_id' =>  ['sometimes','nullable','numeric', 'exists:users,id'],
-            'academic_session_id'=> ['required', 'exists:academic_sessions,id'],
-            'campus_id'=> ['required', 'exists:campuses,id'],
             'total_amount'=> ['required', 'numeric'],
-            'paid_amount'=> ['sometimes','required', 'numeric'],
-            'balance_amount'=> ['sometimes','required', 'numeric'],
             'payment_mode'=> ['sometimes','required','string','max:255'],
+            'note'=> ['sometimes','required','string','max:255'],
             'expense_items'=> ['sometimes','required', 'array'],
             'expense_items.*.expense_head_id'=> ['required', 'exists:expense_heads,id'],
-            'expense_items.*.quantity'=> ['required', 'numeric'],
             'expense_items.*.amount'=> ['required', 'numeric'],
-            'expense_items.*.total_amount'=> ['required', 'numeric'],
 
         ];
     }

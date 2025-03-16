@@ -23,7 +23,8 @@ class UpdateFeeHeadRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required','string','max:255',Rule::unique('fee_heads', 'name')->ignore($this->id)],
+
+            'name' => ['required','string','max:255',Rule::unique('fee_heads', 'name')->ignore($this->route('fee_head'))],
             'income_group_id' => ['sometimes','nullable','numeric',],
         ];
     }

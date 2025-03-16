@@ -22,7 +22,13 @@ class UpdateFeeItemMonthRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'fee_id' => 'sometimes|nullable|integer',
+            'fee_item_id' => 'sometimes|nullable|integer',
+            'rider_id' => 'required|integer',
+            'year' => 'required|integer',
+            'month_id' => 'required|integer',
+            'is_waived' => 'sometimes|boolean', // Defaults to false if not provided
+            'amount' => 'required|numeric|min:0', // Allow 0 as a valid amount
         ];
     }
 }

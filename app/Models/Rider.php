@@ -102,18 +102,9 @@ class Rider extends Model
         return $this->hasMany(Fee::class, 'rider_id', 'id');
     }
 
-    public function feeItemMonths()
+    public function fee_item_months()
     {
-        return $this->hasManyThrough(
-            FeeItemMonth::class,  // Final model (FeeItemMonth)
-            FeeItem::class,       // Intermediate model (FeeItem)
-            'fee_id',             // Foreign key on FeeItem table linking to Fee
-            'fee_item_id',        // Foreign key on FeeItemMonth table linking to FeeItem
-            'id',                 // Local key on Rider table
-            'id'                  // Local key on Fee table
-        )->whereHas('fee', function ($query) {
-            $query->whereColumn('fees.rider_id', 'riders.id');
-        });
+        return $this->hasMany(FeeItemMonth::class,'rider_id','id');
     }
     public function rider_snapshots(){
         return $this->hasMany(RiderSnapshot::class);

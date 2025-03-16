@@ -36,15 +36,10 @@ class UpdateOrganizationRequest extends FormRequest
                 Rule::unique('organizations', 'code')->ignore($this->route('organization'))
             ],
             'address_id' => ['sometimes', 'numeric'],
-            'organization_id' => ['sometimes', 'numeric', 'exists:organizations,id'],
-            'education_board_id' => ['sometimes', 'numeric', 'exists:education_boards,id'],
             'contact_no' => ['sometimes', 'string', 'max:10'],
             'email' => ['sometimes', 'string', 'max:50'],
             'website' => ['sometimes', 'string', 'max:50'],
-            'organization_type_id' => ['sometimes', 'numeric', 'exists:organization_types,id'],
             'establishment_date' => ['sometimes', 'date'],
-            'opening_time' => ['sometimes', 'time'],
-            'closing_time' => ['sometimes', 'time'],
             'logo_image_id' => ['sometimes', 'numeric', 'exists:documents,id'],
         ];
     }

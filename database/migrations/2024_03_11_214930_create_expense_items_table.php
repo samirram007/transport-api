@@ -17,10 +17,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('expense_id');
             $table->unsignedBigInteger('expense_head_id');
-            $table->integer('quantity')->default(1);
-            $table->string('months')->nullable(); // comma separated months e.g., Jan-Feb-Mar
             $table->decimal('amount', 10, 2);
-            $table->decimal('total_amount', 10, 2);
             $table->timestamps();
         });
     }

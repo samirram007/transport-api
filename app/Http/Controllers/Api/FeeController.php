@@ -28,7 +28,7 @@ class FeeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreFeeRequest $request): SuccessResource|array|null
+    public function store(StoreFeeRequest $request)
     {
         $response = $this->feeService->store($request);
 

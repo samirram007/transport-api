@@ -49,38 +49,30 @@ class DashboardService implements IDashboardService
         $selectedFiscalYear = FiscalYear::where('name', $selectedFiscalyear)->first();
         $riderCount = Rider::count();
         $vehicleCount = Vehicle::count();
-        $totalRevenue = 0;
-        // Fee::where('is_deleted', 0)
-        //     ->where('fiscal_year_id', $selectedFiscalYear->id)
-        //     ->sum('total_amount');
+        $totalRevenue =   Fee::where('is_deleted', 0)
+            ->where('fiscal_year_id', $selectedFiscalYear->id)
+            ->sum('total_amount');
         $totalExpense = Expense::where('fiscal_year_id', $selectedFiscalYear->id)
             ->sum('total_amount');
 
-        $recentFees = 0;
-        // Fee::with(
-        //     'student',
-        //     'student_session.academic_class',
-        //     'student_session.section'
-        // )->where('is_deleted', 0)
-        //     ->where('fiscal_year_id', $selectedFiscalYear->id)
-        //     ->orderBy('created_at', 'desc')->take(5)->get();
-        $feesByMonth = 0;
-        //     Fee::selectRaw('
-        //     MONTH(fee_date) as month,
-        //     YEAR(fee_date) as year,
-        //     SUM(total_amount) as total_amount
-        // ')
-        //         ->where('is_deleted', 0)
-        //         ->where('fiscal_year_id', $selectedFiscalYear->id)
-        //         ->groupBy(DB::raw('YEAR(fee_date), MONTH(fee_date)'))
-        //         ->orderBy('year')
-        //         ->orderBy('month')
-        //         ->get();
-        $feesByMonth = 0;
-        // $feesByMonth->map(function ($item) {
-        //     $item->month_name = date('M', mktime(0, 0, 0, $item->month, 1));
-        //     return $item;
-        // });
+        $recentFees = Fee::with('rider')->where('is_deleted', 0)
+            ->where('fiscal_year_id', $selectedFiscalYear->id)
+            ->orderBy('created_at', 'desc')->take(5)->get();
+        $feesByMonth =Fee::selectRaw('
+            MONTH(fee_date) as month,
+            YEAR(fee_date) as year,
+            SUM(total_amount) as total_amount
+        ')
+                ->where('is_deleted', 0)
+                ->where('fiscal_year_id', $selectedFiscalYear->id)
+                ->groupBy(DB::raw('YEAR(fee_date), MONTH(fee_date)'))
+                ->orderBy('year')
+                ->orderBy('month')
+                ->get();
+        $feesByMonth =   $feesByMonth->map(function ($item) {
+            $item->month_name = date('M', mktime(0, 0, 0, $item->month, 1));
+            return $item;
+        });
 
         return response()->json([
             'data' => [
@@ -89,8 +81,9 @@ class DashboardService implements IDashboardService
                 'totalRevenue' => $totalRevenue,
                 'totalExpense' => $totalExpense,
                 'selectedSession' => FiscalYearResource::make($selectedFiscalYear),
-                'recentFees' => [], //FeeCollection::make($recentFees),
+                'recentFees' =>  FeeCollection::make($recentFees),
                 'feesByMonth' => $feesByMonth,
+                'feesByDate'=>[]
             ],
             "status" => true,
             "code" => 200,

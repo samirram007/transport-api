@@ -121,36 +121,80 @@ class DatabaseSeeder extends Seeder
         ]);
         \App\Models\Rider::create([
             'id' => 1,
+            'rider_snapshot_id' => 1,
             'name' => "Rider 1",
             'school_id' => 1,
             'vehicle_id' => 1,
-            'standard'=>'nursery1',
-            'section'=>'a',
-            'roll_no'=>'1',
+            'standard' => 'nursery1',
+            'section' => 'a',
+            'roll_no' => '1',
             'pickup_slot_id' => 1,
             'drop_slot_id' => 2,
             'monthly_charge' => 500,
         ]);
+        \App\Models\RiderSnapshot::create([
+            'id' => 1,
+            'rider_id' => 1,
+            'name' => "Rider 1",
+            'school_id' => 1,
+            'vehicle_id' => 1,
+            'standard' => 'nursery1',
+            'section' => 'a',
+            'roll_no' => '1',
+            'pickup_slot_id' => 1,
+            'drop_slot_id' => 2,
+            'monthly_charge' => 500,
+        ]);
+
         \App\Models\Rider::create([
             'id' => 2,
+            'rider_snapshot_id' => 2,
             'name' => "Student 2",
             'school_id' => 2,
             'vehicle_id' => 1,
-            'standard'=>'one',
-            'section'=>'a',
-            'roll_no'=>'12',
+            'standard' => 'one',
+            'section' => 'a',
+            'roll_no' => '12',
             'pickup_slot_id' => 1,
             'drop_slot_id' => 2,
             'monthly_charge' => 1000,
         ]);
+        \App\Models\RiderSnapshot::create([
+            'id' => 2,
+            'rider_id' => 2,
+            'name' => "Student 2",
+            'school_id' => 2,
+            'vehicle_id' => 1,
+            'standard' => 'one',
+            'section' => 'a',
+            'roll_no' => '12',
+            'pickup_slot_id' => 1,
+            'drop_slot_id' => 2,
+            'monthly_charge' => 1000,
+        ]);
+
         \App\Models\Rider::create([
             'id' => 3,
+            'rider_snapshot_id'=> 3,
             'name' => "Student Das",
             'school_id' => 1,
             'vehicle_id' => 1,
-            'standard'=>'two',
-            'section'=>'a',
-            'roll_no'=>'17',
+            'standard' => 'two',
+            'section' => 'a',
+            'roll_no' => '17',
+            'pickup_slot_id' => 1,
+            'drop_slot_id' => 2,
+            'monthly_charge' => 700,
+        ]);
+        \App\Models\RiderSnapshot::create([
+            'id' => 3,
+            'rider_id' => 3,
+            'name' => "Student Das",
+            'school_id' => 1,
+            'vehicle_id' => 1,
+            'standard' => 'two',
+            'section' => 'a',
+            'roll_no' => '17',
             'pickup_slot_id' => 1,
             'drop_slot_id' => 2,
             'monthly_charge' => 700,
@@ -178,34 +222,121 @@ class DatabaseSeeder extends Seeder
             'fee_no' => "1001",
             'fee_date' => '2025-03-01',
             'rider_id' => 1,
+            'rider_snapshot_id' => 1,
             'fiscal_year_id' => 2025,
-            'total_amount' => 500,
-            'paid_amount'=> 500,
-            'balance_amount'=> 500,
+            'total_amount' => 700,
+            'paid_amount' => 700,
+            'balance_amount' => 0,
             'payment_mode' => 'cash',
         ]);
+        \App\Models\FeeItem::create([
+            'id' => 1,
+            'fee_id' => 1,
+            'fee_head_id' => 1,
+            'quantity' => 1,
+            'amount' => 700,
+            'total_amount' => 700,
+        ]);
+        \App\Models\FeeItemMonth::create([
+            'id' => 1,
+            'fee_id' => 1,
+            'rider_id' => 1,
+            'fee_item_id' => 1,
+            'year' => 2025,
+            'month_id' => 1,
+            'amount' => 700,
+        ]);
+
+
         \App\Models\Fee::create([
             'id' => 2,
             'fee_no' => "1002",
             'fee_date' => '2025-03-02',
             'rider_id' => 2,
+            'rider_snapshot_id' => 2,
             'fiscal_year_id' => 2025,
-            'total_amount' => 1000,
-            'paid_amount'=> 1000,
-            'balance_amount'=> 1000,
+            'total_amount' => 2000,
+            'paid_amount' => 2000,
+            'balance_amount' => 0,
             'payment_mode' => 'cash',
         ]);
+
+        \App\Models\FeeItem::create([
+            'id' => 2,
+            'fee_id' => 2,
+            'fee_head_id' => 1,
+            'quantity' => 2,
+            'amount' => 1000,
+            'total_amount' => 2000,
+        ]);
+        \App\Models\FeeItemMonth::create([
+            'id' => 2,
+            'fee_id' => 2,
+            'rider_id' => 2,
+            'fee_item_id' => 2,
+            'year' => 2025,
+            'month_id' => 1,
+            'amount' => 1000,
+        ]);
+        \App\Models\FeeItemMonth::create([
+            'id' => 3,
+            'fee_id' => 2,
+            'rider_id' => 2,
+            'fee_item_id' => 2,
+            'year' => 2025,
+            'month_id' => 2,
+            'amount' => 1000,
+        ]);
+
         \App\Models\Fee::create([
             'id' => 3,
             'fee_no' => "1003",
             'fee_date' => '2025-03-05',
             'rider_id' => 3,
+            'rider_snapshot_id' => 3,
             'fiscal_year_id' => 2025,
-            'total_amount' => 700,
-            'paid_amount'=> 700,
-            'balance_amount'=> 700,
+            'total_amount' => 2100,
+            'paid_amount' => 2100,
+            'balance_amount' => 0,
             'payment_mode' => 'cash',
         ]);
+
+        \App\Models\FeeItem::create([
+            'id' => 3,
+            'fee_id' => 3,
+            'fee_head_id' => 1,
+            'quantity' => 3,
+            'amount' => 700,
+            'total_amount' => 2100,
+        ]);
+        \App\Models\FeeItemMonth::create([
+            'id' => 4,
+            'fee_id' => 3,
+            'rider_id' => 3,
+            'fee_item_id' => 3,
+            'year' => 2025,
+            'month_id' => 1,
+            'amount' => 700,
+        ]);
+        \App\Models\FeeItemMonth::create([
+            'id' => 5,
+            'fee_id' => 3,
+            'rider_id' => 3,
+            'fee_item_id' => 3,
+            'year' => 2025,
+            'month_id' => 2,
+            'amount' => 700,
+        ]);
+        \App\Models\FeeItemMonth::create([
+            'id' => 6,
+            'fee_id' => 3,
+            'rider_id' => 3,
+            'fee_item_id' => 3,
+            'year' => 2025,
+            'month_id' => 3,
+            'amount' => 700,
+        ]);
+
         \App\Models\ExpenseGroup::create([
             'id' => 1,
             'name' => "Direct Expense",
@@ -214,6 +345,53 @@ class DatabaseSeeder extends Seeder
             'id' => 2,
             'name' => "Indirect Expense",
         ]);
+        \App\Models\ExpenseHead::create([
+            'id' => 1,
+            'name' => "Salary",
+            'expense_group_id' => 1,
+        ]);
+        \App\Models\ExpenseHead::create([
+            'id' => 2,
+            'name' => "Bus Maintenance",
+            'expense_group_id' => 2,
+
+        ]);
+
+        \App\Models\Expense::create([
+            'id' => 1,
+            'expense_no' => "E01001",
+            'voucher_no' => "E01001",
+            'expense_date' => '2025-03-01',
+            'fiscal_year_id' => 2025,
+            'total_amount' => 700,
+            'payment_mode' => 'cash',
+            'note'=>'Seeding Note 1'
+        ]);
+        \App\Models\ExpenseItem::create([
+            'id' => 1,
+            'expense_id' => 1,
+            'expense_head_id' => 1,
+            'amount' => 700,
+        ]);
+        \App\Models\Expense::create([
+            'id' => 2,
+            'expense_no' => "E01002",
+            'voucher_no' => "E01002",
+            'expense_date' => '2025-03-04',
+            'fiscal_year_id' => 2025,
+            'total_amount' => 2000,
+            'payment_mode' => 'cash',
+            'note'=>'Seeding Note 2'
+
+        ]);
+        \App\Models\ExpenseItem::create([
+            'id' => 2,
+            'expense_id' => 2,
+            'expense_head_id' => 2,
+            'amount' => 2000,
+        ]);
+
+
         $this->call([
             Data::class
         ]);

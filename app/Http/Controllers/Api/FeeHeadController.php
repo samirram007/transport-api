@@ -2,59 +2,66 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\FeeHead;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\FeeHead\FeeHeadResource;
-use App\Http\Resources\FeeHead\FeeHeadCollection;
 use App\Http\Requests\FeeHead\StoreFeeHeadRequest;
 use App\Http\Requests\FeeHead\UpdateFeeHeadRequest;
+use App\Http\Resources\SuccessResource;
+use App\Services\IFeeHeadService;
 
 class FeeHeadController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $feeHeadService;
+
+    public function __construct(IFeeHeadService $feeHeadService)
+    {
+        $this->feeHeadService = $feeHeadService;
+    }
+
     public function index()
     {
-        return new FeeHeadCollection(FeeHead::with(['income_group'])->get());
+        $response = $this->feeHeadService->getAll();
+
+        return $response;
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreFeeHeadRequest $request)
+    public function store(StoreFeeHeadRequest $request): SuccessResource|array|null
     {
-        $data = $request->validated();
-        $fee_head = FeeHead::create($data);
-        return new FeeHeadResource($fee_head);
+        $response = $this->feeHeadService->store($request);
+
+        return $response;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(FeeHead $fee_head)
+    public function show($id)
     {
-        return new FeeHeadResource($fee_head);
+        $response = $this->feeHeadService->getById($id);
+
+        return $response;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateFeeHeadRequest $request, FeeHead $fee_head)
+    public function update(UpdateFeeHeadRequest $request, $id)
     {
+        $response = $this->feeHeadService->update($request, $id);
 
-        $data = $request->validated();
-        $fee_head->update($data);
-        return new FeeHeadResource($fee_head);
+        return $response;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( FeeHead $fee_head)
+    public function destroy($id)
     {
-        $fee_head->delete();
-        return response(null, 204);
+        $response = $this->feeHeadService->delete($id);
+
+        return $response;
+
     }
 }

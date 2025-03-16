@@ -11,15 +11,14 @@ class Expense extends Model
     use  HasFactory;
     protected $fillable = [
         'expense_no',
+        'voucher_no',
         'expense_date',
-        'expense_template_id',
-        'user_id',
-        'academic_session_id',
-        'campus_id',
+        'fiscal_year_id',
         'total_amount',
-        'paid_amount',
-        'balance_amount',
         'payment_mode',
+        'is_deleted',
+        'note',
+        'document_id',
 
     ];
     protected $hidden = [
@@ -27,14 +26,12 @@ class Expense extends Model
         'updated_at',
     ];
 
-    public function user() {
-        return $this->belongsTo(User::class);
+    public function document()
+    {
+        return $this->belongsTo(Document::class);
     }
-    public function academic_session() {
-        return $this->belongsTo(AcademicSession::class);
-    }
-    public function campus() {
-        return $this->belongsTo(Campus::class);
+    public function fiscal_year() {
+        return $this->belongsTo(FiscalYear::class);
     }
 
 

@@ -14,7 +14,7 @@ use Illuminate\Database\RecordsNotFoundException;
 
 class FeeHeadService implements IFeeHeadService
 {
-    protected $resourceLoader=[];
+    protected $resourceLoader=['income_group'];
     public function getAll()
     {
         $feeHead = FeeHead::with($this->resourceLoader)->get();

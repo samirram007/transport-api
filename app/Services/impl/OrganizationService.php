@@ -20,8 +20,6 @@ class OrganizationService implements IOrganizationService
         $this->resourceLoader = [
             'address',
             'logo_image',
-            'organization_type',
-            'education_board'
         ];
     }
 

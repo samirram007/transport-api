@@ -15,8 +15,6 @@ class FeeItem extends Model
         'months',
         'amount',
         'is_active',
-        'keep_periodic_details',
-        'is_customizable',
         'is_deleted',
         'total_amount',
     ];
@@ -34,8 +32,5 @@ class FeeItem extends Model
         return $this->belongsTo(Fee::class, 'fee_id', 'id');
     }
 
-    public function feeItemMonths()
-    {
-        return $this->hasMany(FeeItemMonth::class, 'fee_item_id', 'id');
-    }
+
 }

@@ -188,7 +188,9 @@ class RiderService implements IRiderService
                 'pickup_slot',
                 'drop_slot',
                 'profile_document',
-                'fee_item_months',
+                'fee_item_months'=>function ($query) use ($selectedFiscalYear) {
+                    $query->where('year', $selectedFiscalYear->id);
+                },
                 'fees' => function ($query) use ($selectedFiscalYear) {
                     $query->where('is_deleted', 0)
                         ->where('fiscal_year_id', $selectedFiscalYear->id)
@@ -201,13 +203,14 @@ class RiderService implements IRiderService
                         ]);
                 }
             ];
-            $rider =  Rider::first();
-            dd($rider->feeItemMonths->toArray() ?? []);
+            // $rider = Rider::with(['fee_item_months'=>function ($query) use ($selectedFiscalYear) {
+            //         $query->where('year', $selectedFiscalYear->id);
+            //     }])->find(1);
+            //  dd($rider->fee_item_months->toArray() ?? []);
 
             $rider = Rider::with($resourceLoaderForFees)
                 ->where('name', 'like', '%' . $request->input('text') . '%')
                 ->get();
-dd($rider->toArray() ?? []);
             return RiderCollection::make($rider);
         } else {
             array_push($message, 'Date range is required');

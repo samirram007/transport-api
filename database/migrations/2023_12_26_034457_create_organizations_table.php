@@ -19,6 +19,8 @@ return new class extends Migration {
             $table->string('contact_no')->unique()->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('website')->nullable();
+            $table->date('establishment_date')->nullable();
+            $table->string('logo_image_id')->nullable();
             $table->timestamps();
         });
     }

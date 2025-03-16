@@ -22,7 +22,8 @@ class UpdateExpenseHeadRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required','string','max:255',Rule::unique('expense_heads', 'name')->ignore($this->id)],
+            'name' => ['required','string','max:255',Rule::unique('expense_heads', 'name')->ignore($this->route('expense_head'))],
+
             'expense_group_id' => ['sometimes','nullable','numeric',],
         ];
     }

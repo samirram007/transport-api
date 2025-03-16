@@ -43,6 +43,7 @@ class FeeResource extends SuccessResource
             'balanceAmount' => $this->balance_amount,
             'paymentMode' => $this->payment_mode,
             'isDeleted'=>$this->is_deleted,
+            'note'=>$this->note,
             // 'note'=>$this->note,
 
             "rider" => new RiderResource($this->whenLoaded('rider')),

@@ -20,10 +20,8 @@ class ExpenseItemResource extends SuccessResource
             'id' => $this->id,
             'expenseId' => $this->expense_id,
             'expenseHeadId' => $this->expense_head_id,
-            'quantity' => $this->quantity,
             'amount' => $this->amount,
-            'totalAmount' => $this->total_amount,
-            'months' => $this->months,
+            'is_deleted'=> $this->is_deleted,
             "expenseHead"=>new ExpenseHeadResource($this->whenLoaded('expense_head')),
         ];
     }
